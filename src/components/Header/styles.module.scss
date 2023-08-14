@@ -1,0 +1,55 @@
+.content{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    div{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px;
+        button{
+            width: 36px;
+            height: 39px;
+            border: none;
+            color: #BDBDBD;
+        }
+        form{
+            background-color: #FFFFFF ;
+            width: 365px;
+            height: 60px;
+            border-radius: 8px;
+            border: 2px solid var(--color-gray-100);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0px 15px;
+            button{
+                width: 53px;
+                height: 40px;
+                padding: 0px 20px;
+                border-radius: 8px;
+                border: 2px;
+                background-color: var(--color-primary);
+                color: var(--color-gray-0);
+            }
+        }
+    }
+}
+
+.buttonAll{
+    width: max-content;
+    padding: 20px;
+    height: max-content;
+    border: none;
+    background-color: var(--color-gray-100);
+    color: var(--color-gray-300);
+    border-radius: 8px;
+    border: 2px;
+}
+
+header{
+    background-color: var(--color-gray-0);
+}
