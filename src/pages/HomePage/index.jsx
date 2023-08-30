@@ -7,8 +7,10 @@ import {ToastContainer, toast} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.min.css';
 
 export const HomePage = () => {
+   const storageCart = localStorage.getItem("@cartProduct");
+
    const [productList, setProductList] = useState([]);
-   const [cartList, setCartList] = useState([]);
+   const [cartList, setCartList] = useState(storageCart ?JSON.parse(storageCart) : []);
    const [search, setSearch] = useState("");
    const [isVisible, setVisible] = useState(false);
 
@@ -24,21 +26,17 @@ export const HomePage = () => {
       getProducts();
    }, []);
 
-   /** */
-   /** */
+   useEffect(()=>{
+      localStorage.setItem("@cartProduct", JSON.stringify(cartList))
+   }, [cartList])
+
    const filteredProducts = productList.filter( product => 
       product.name.toLowerCase().includes(search.toLocaleLowerCase()) 
       ||
       product.category.toLowerCase().includes(search.toLocaleLowerCase()) 
    );
 
-   const resetFilter  = () => {
-      setSearch("");
-   }
-
    const productListered = search ? filteredProducts : productList ; 
-
-   /** */
 
    const addCart = (product) => {
       if(!cartList.some(cartProduct => cartProduct.id === product.id )){
@@ -52,26 +50,19 @@ export const HomePage = () => {
    const removeCart = (productId) => {
       const newCartList = cartList.filter(cart => cart.id !== productId);
       toast.dark(`Item removido do carrinho ! Que pena, era tao gostoso :(`)
-      setCartList(newCartList);
+      setCartList(newCartList);     
    }
 
-   // console.log(productListered);
-   // console.log(cartList);
-
-   // useEffect montagem - carrega os produtos da API e joga em productList
-   // useEffect atualização - salva os produtos no localStorage (carregar no estado)
-   // adição, exclusão, e exclusão geral do carrinho
-   // renderizações condições e o estado para exibir ou não o carrinho
-   // filtro de busca
-   // estilizar tudo com sass de forma responsiva
+   function removeAll(){
+      setCartList([]);
+   }
 
    return (
       <>
-         <Header setSearch={setSearch} setVisible={setVisible} resetFilter={resetFilter}/>
+         <Header setSearch={setSearch} setVisible={setVisible} cartList={cartList}/>
          <main>
-            <ProductList addCart={addCart} resetFilter={resetFilter} productList={productListered}/>
-            {/* {isVisible ? <CartModal CartModal={cartList} setVisible={setVisible}/> : null} */}
-            <CartModal cartList={cartList} setVisible={setVisible} removeCart={removeCart} />
+            <ProductList addCart={addCart} productList={productListered}/>
+            {isVisible ? <CartModal cartList={cartList} setVisible={setVisible} removeCart={removeCart} removeAll={removeAll}/> : null}
             <ToastContainer/>
          </main>
       </>

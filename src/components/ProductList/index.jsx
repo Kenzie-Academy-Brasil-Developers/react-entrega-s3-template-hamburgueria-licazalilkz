@@ -1,3 +1,4 @@
+import { nanoid } from "nanoid";
 import { ProductCard } from "./ProductCard";
 import styles from "./styles.module.scss";
 
@@ -8,7 +9,7 @@ export const ProductList = ({ addCart, productList }) => {
          {productList.length > 0 ?(
             <ul className={styles.content}>
                {productList.map((product) => (
-                  <ProductCard key={product.id} product={product} addCart={addCart} />
+                  <ProductCard key={nanoid()} product={product} addCart={addCart} />
                ))}
             </ul>
          ):(

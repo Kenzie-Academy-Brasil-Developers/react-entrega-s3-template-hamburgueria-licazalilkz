@@ -1,5 +1,6 @@
 import styles from "./styles.module.scss"
 
+
 export const ProductCard = ({ product, addCart }) => {
     return(
         <li className={styles.content}>

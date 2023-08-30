@@ -1,0 +1,34 @@
+.productCard{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    div{
+        width: 82.259px;
+        height: 80px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        border-radius: 5px;
+        background: var(--color-gray-0);
+        img{
+            width: 55px;
+            height: 53.49px;
+        }
+    }
+}
+
+.content{
+    display: flex;
+    justify-content: space-between;
+    width: 494px;
+    padding: 0px 20px;
+    height: 80px;
+    button{
+        width: 11.311px;
+        height: 14px;
+        border: none;
+        background-color: white;
+        color: var( --color-gray-100);
+    }
+}
